@@ -3,7 +3,7 @@
 % FIXME: doesn't work with more generalized queries like (someroom, X-Y), needs clpfd and probably something else than \+
 empty_tile(Room, X-Y) :-
 	size(Room, RX1, RY1),
-	\+ location(_, X-Y),
+	\+ location(Room-_, X-Y),
 	X >= 0, Y >= 0, X < RX1, Y < RY1,
 	true.
 	%\+ bagof(Room, wall(Room, WX0, WY0, WX1, WY1),
