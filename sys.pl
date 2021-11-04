@@ -23,12 +23,16 @@ pair_add(X1-Y1, X2-Y2, OX-OY) :-
 	OX is X1+X2,
 	OY is Y1+Y2.
 
+move_rel(Room-Ent, Direction) :-
+	location(Room-Ent, EntXY),
+	pair_add(EntXY, Direction, MoveXY),
+	teleport(Room-Ent, MoveXY).
+
 move_towards(Room-Ent, Room-Target) :-
 	location(Room-Ent, EntXY),
 	location(Room-Target, TargetXY),
 	rel_direction_to(EntXY, TargetXY, Direction),
-	pair_add(EntXY, Direction, MoveXY),
-	teleport(Room-Ent, MoveXY).
+	move_rel(Room-Ent, Direction).
 
 move_up(Ent) :-
 	location(Ent, X-Y),
