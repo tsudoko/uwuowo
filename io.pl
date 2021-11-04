@@ -12,10 +12,10 @@ is_rect_border(RW-RH, X-Y) :- X = 0; Y = 0; X = RW; Y = RH.
 write_room(Room, RW-RH) :- write_room(Room, RW-RH, 0-0), !.
 
 write_room(_, RW-RH, RW-RH) :-
-	write('#').
+	write('＃').
 write_room(Room, RW-RH, RW-Y) :-
 	NY is Y + 1,
-	write('#'),
+	write('＃'),
 	nl,
 	write_room(Room, RW-RH, 0-NY).
 write_room(Room, RW-RH, X-Y) :- RealX is X-1, RealY is Y-1, location(Room-Ent, RealX-RealY),
@@ -24,10 +24,10 @@ write_room(Room, RW-RH, X-Y) :- RealX is X-1, RealY is Y-1, location(Room-Ent, R
 	NX is X + 1,
 	write_room(Room, RW-RH, NX-Y).
 write_room(Room, RW-RH, X-Y) :- is_rect_border(RW-RH, X-Y),
-	write('#'),
+	write('＃'),
 	NX is X + 1,
 	write_room(Room, RW-RH, NX-Y).
 write_room(Room, RW-RH, X-Y) :-
-	write('.'),
+	write('・'),
 	NX is X + 1,
 	write_room(Room, RW-RH, NX-Y).
