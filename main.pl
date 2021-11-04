@@ -7,7 +7,7 @@ location(testroom-self, 4-2).
 	"testroom.pl",
 	"items.pl",
 	"sys.pl",
-	"entities.pl",
-	"io.pl"
+	"tui.pl",
+	"tui_tiles.pl"
 	%"base.pl"
 ].

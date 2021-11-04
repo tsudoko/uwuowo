@@ -19,8 +19,8 @@ write_room(Room, RW-RH, RW-Y) :-
 	nl,
 	write_room(Room, RW-RH, 0-NY).
 write_room(Room, RW-RH, X-Y) :- RealX is X-1, RealY is Y-1, location(Room-Ent, RealX-RealY),
-	ascii_graphic(Ent, Graphic),
-	put_char(Graphic),
+	tile(Ent, T),
+	put_char(T),
 	NX is X + 1,
 	write_room(Room, RW-RH, NX-Y).
 write_room(Room, RW-RH, X-Y) :- is_rect_border(RW-RH, X-Y),
