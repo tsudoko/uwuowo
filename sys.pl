@@ -25,6 +25,15 @@ rel_direction_to(EX-EY, TX-TY, OutX-OutY) :-
 	OutX is floor(-sign(EX-TX)),
 	OutY is floor(-sign(EY-TY)).
 
+open_(Room-Ent, Direction) :-
+	location(Room-Ent, EntXY),
+	pair_add(EntXY, Direction, TargetXY),
+	location(Room-(exit-closed), TargetXY),
+	inventory(Ent, Inv),
+	memberchk(key, Inv),
+	retract(location(Room-(exit-closed), TargetXY)),
+	assert(location(Room-(exit-open), TargetXY)).
+
 get(Room-Ent, Direction) :-
 	location(Room-Ent, EntXY),
 	pair_add(EntXY, Direction, TargetXY),

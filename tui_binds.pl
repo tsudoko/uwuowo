@@ -20,6 +20,7 @@ room_leave_self(Where) :-
 
 turn_pass :- turn_pass(_).
 
+keybind("O") :- toggle_action(open_).
 keybind("G") :- toggle_action(get).
 keybind(">") :- room_leave_self(down), turn_pass.
 keybind("<") :- room_leave_self(up)  , turn_pass.
