@@ -14,6 +14,23 @@ is_rect_border(RW-RH, X-Y) :- X = 0; Y = 0; X = RW; Y = RH.
 
 write_room(Room, RW-RH) :- write_room(Room, RW-RH, 0-0), !.
 
+toplevel_ent(X) :-
+	\+ solid(X),
+	\+ item(X),
+	\+ floor(X).
+
+get_top_ent(Room, RW-RH, X-Y, Ent) :-
+	(is_rect_border(RW-RH, X-Y), Ent = wall);
+	EntX is X-1, EntY is Y-1,
+	(
+		(location(Room-Ent, EntX-EntY), toplevel_ent(Ent));
+		(location(Room-Ent, EntX-EntY), item(Ent));
+		(location(Room-Ent, EntX-EntY), solid(Ent));
+		(location(Room-Ent, EntX-EntY), floor(Ent));
+		location(Room-Ent, EntX-EntY)
+	);
+	Ent = floor.
+
 write_room(_, RW-RH, RW-RH) :-
 	tile(wall, T), put_char(T).
 write_room(Room, RW-RH, RW-Y) :-
@@ -21,19 +38,8 @@ write_room(Room, RW-RH, RW-Y) :-
 	tile(wall, T), put_char(T),
 	nl,
 	write_room(Room, RW-RH, 0-NY).
-write_room(Room, RW-RH, X-Y) :- RealX is X-1, RealY is Y-1, item_location(Room-Ent, RealX-RealY),
-	tile(Ent, T), put_char(T),
-	NX is X + 1,
-	write_room(Room, RW-RH, NX-Y).
-write_room(Room, RW-RH, X-Y) :- RealX is X-1, RealY is Y-1, location(Room-Ent, RealX-RealY),
-	tile(Ent, T), put_char(T),
-	NX is X + 1,
-	write_room(Room, RW-RH, NX-Y).
-write_room(Room, RW-RH, X-Y) :- is_rect_border(RW-RH, X-Y),
-	tile(wall, T), put_char(T),
-	NX is X + 1,
-	write_room(Room, RW-RH, NX-Y).
 write_room(Room, RW-RH, X-Y) :-
-	tile(floor, T), put_char(T),
+	get_top_ent(Room, RW-RH, X-Y, Ent),
+	tile(Ent, T), put_char(T),
 	NX is X + 1,
 	write_room(Room, RW-RH, NX-Y).

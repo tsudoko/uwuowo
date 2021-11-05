@@ -2,8 +2,9 @@
 size(testroom, 20, 20).
 
 location(testroom-table, 4-3).
-item_location(testroom-knife, 4-3).
-item_location(testroom-beer_can, 4-3).
-on(Item, Entity) :- location(Entity, X-Y), item_location(Item, X-Y).
+location(testroom-knife, 4-3).
+location(testroom-(can-0), 4-3).
+contents(can-0, beer).
+on(Item, Entity) :- item(Item), location(Entity, X-Y), location(Item, X-Y).
 
 wall(testroom, 1, 1, 18, 1).
