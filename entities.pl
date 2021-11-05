@@ -1,6 +1,7 @@
 solid(wall).
 solid(table).
 solid(exit-closed).
+item(cat).
 item(knife).
 item(can-_).
 floor(stairs).
