@@ -38,6 +38,10 @@ keybind("\033[B") :- act_self( 0 -  1), turn_pass.
 keybind("2")      :- act_self( 0 -  1), turn_pass.
 keybind("j")      :- act_self( 0 -  1), turn_pass.
 
+keybind("5")      :- act_self( 0 -  0), turn_pass.
+keybind("\r")     :- act_self( 0 -  0), turn_pass.
+keybind(" ")      :-                    turn_pass.
+
 keybind("\033[C") :- act_self( 1 -  0), turn_pass.
 keybind("6")      :- act_self( 1 -  0), turn_pass.
 keybind("l")      :- act_self( 1 -  0), turn_pass.
