@@ -27,8 +27,8 @@ put_ent(Room-Ent, X-Y) :-
 	\+ location(Room-Ent, X-Y),
 	assert(location(Room-Ent, X-Y)).
 
-gen_room(Room) :- gen_room(Room, false).
-gen_room(Room, WithKey) :- \+ size(Room, _-_),
+gen_room(Room) :- gen_room(Room, false, false).
+gen_room(Room, WithKey, WithExit) :- \+ size(Room, _-_),
 	random_int(0, 20, W),
 	random_int(0, 20, H),
 	assert(size(Room, W-H)),
@@ -45,5 +45,10 @@ gen_room(Room, WithKey) :- \+ size(Room, _-_),
 	(
 		WithKey,
 		put_ent(Room-key, random)
+		; true
+	),
+	(
+		WithExit,
+		put_ent(Room-(exit-closed), random)
 		; true
 	).
