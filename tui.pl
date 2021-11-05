@@ -14,4 +14,5 @@ run :-
 	get_key(KList),
 	string_chars(K, KList),
 	run_keybind(K),
+	!,
 	run.
