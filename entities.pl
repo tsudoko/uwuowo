@@ -2,9 +2,10 @@ solid(wall).
 solid(table).
 solid(exit-closed).
 item(cat).
+item(key).
 item(knife).
 item(can-_).
-floor(stairs).
+floor(stairs-_).
 
 location(Room-wall, X-Y) :-
 	\+ (var(X), var(Y)),

@@ -1,9 +1,9 @@
 :- include("basedef.pl").
 
 stat(self, sanity, 100).
+current_action(move_rel).
 location(testroom-self, 4-2).
 sight_range(_, 2.5).
-current_action(move_rel).
 
 :- [
 	"util.pl",
@@ -17,3 +17,9 @@ current_action(move_rel).
 	"tui_binds.pl",
 	"tui.pl"
 ].
+
+:- gen_room(exitroom, false, true).
+:- put_ent(exitroom-(stairs-up), random).
+:- put_ent(testroom-(stairs-down), random).
+:- put_ent(testroom-key, random).
+rooms_linked(testroom-down, exitroom-up).

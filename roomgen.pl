@@ -51,4 +51,4 @@ gen_room(Room, WithKey, WithExit) :- \+ size(Room, _-_),
 		WithExit,
 		put_ent(Room-(exit-closed), random)
 		; true
-	).
+	),!.
