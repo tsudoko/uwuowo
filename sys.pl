@@ -19,10 +19,6 @@ rel_direction_to(EX-EY, TX-TY, OutX-OutY) :-
 	OutX is floor(-sign(EX-TX)),
 	OutY is floor(-sign(EY-TY)).
 
-pair_add(X1-Y1, X2-Y2, OX-OY) :-
-	OX is X1+X2,
-	OY is Y1+Y2.
-
 move_rel(Room-Ent, Direction) :-
 	location(Room-Ent, EntXY),
 	pair_add(EntXY, Direction, MoveXY),
