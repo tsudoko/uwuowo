@@ -39,9 +39,9 @@ write_room(Room, RW-RH, RW-Y) :-
 	NY is Y + 1,
 	tile(wall, T), put_char(T),
 	nl,
-	write_room(Room, RW-RH, 0-NY).
+	!, write_room(Room, RW-RH, 0-NY).
 write_room(Room, RW-RH, X-Y) :-
 	get_top_ent(Room, RW-RH, X-Y, Ent),
 	tile(Ent, T), put_char(T),
 	NX is X + 1,
-	write_room(Room, RW-RH, NX-Y).
+	!, write_room(Room, RW-RH, NX-Y).
