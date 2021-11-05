@@ -36,17 +36,17 @@ gen_room(Room, WithKey, WithExit) :- \+ size(Room, _-_),
 		maybe,
 		put_ent(Room-table, random)
 		; true
-	),
+	),!,
 	(
 		maybe,
 		put_ent(Room-cat, random)
 		; true
-	),
+	),!,
 	(
 		WithKey,
 		put_ent(Room-key, random)
 		; true
-	),
+	),!,
 	(
 		WithExit,
 		put_ent(Room-(exit-closed), random)
