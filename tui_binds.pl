@@ -13,9 +13,16 @@ act_self(X-Y) :-
 	Action =.. [BaseAction, Room-self, X-Y],
 	call(Action),
 	true.
+
+room_leave_self(Where) :-
+	location(Room-self, _),
+	room_leave(Room-self, Where).
+
 turn_pass :- turn_pass(_).
 
 keybind("G") :- toggle_action(get).
+keybind(">") :- room_leave_self(down), turn_pass.
+keybind("<") :- room_leave_self(up)  , turn_pass.
 
 keybind("7")      :- act_self(-1 - -1), turn_pass.
 keybind("9")      :- act_self( 1 - -1), turn_pass.

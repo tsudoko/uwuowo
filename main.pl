@@ -4,6 +4,7 @@ stat(self, sanity, 100).
 current_action(move_rel).
 location(testroom-self, 4-2).
 sight_range(_, 2.5).
+room_linked(testroom-down, exitroom-up).
 
 :- [
 	"util.pl",
@@ -22,4 +23,3 @@ sight_range(_, 2.5).
 :- put_ent(exitroom-(stairs-up), random).
 :- put_ent(testroom-(stairs-down), random).
 :- put_ent(testroom-key, random).
-rooms_linked(testroom-down, exitroom-up).

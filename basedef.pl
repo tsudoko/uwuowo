@@ -10,8 +10,8 @@
 :- multifile sight_range/2.
 :- dynamic inventory/2.
 :- multifile inventory/2.
-:- dynamic rooms_linked/2.
-:- multifile rooms_linked/2.
+:- dynamic room_linked/2.
+:- multifile room_linked/2.
 
 :- dynamic current_action/1.
 

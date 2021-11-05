@@ -29,6 +29,13 @@ get(Room-Ent, Direction) :-
 	inventory_add(Ent, Target),
 	retract(location(Room-Target, TargetXY)).
 
+room_linked(R1-D1, R2-D2) :- room_linked(R2-D2, R1-D1).
+room_leave(Room-Ent, Where) :-
+	room_linked(Room-Where, TargetRoom-TargetDir),
+	location(TargetRoom-(stairs-TargetDir), X-Y),
+	retract(location(Room-Ent, _)),
+	assert(location(TargetRoom-Ent, X-Y)).
+
 move_rel(Room-Ent, Direction) :-
 	location(Room-Ent, EntXY),
 	pair_add(EntXY, Direction, MoveXY),
