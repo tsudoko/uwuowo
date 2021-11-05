@@ -4,10 +4,7 @@
 empty_tile(Room, X-Y) :-
 	size(Room, RX1, RY1),
 	\+ (location(Room-Ent, X-Y), solid(Ent)),
-	X >= 0, Y >= 0, X < RX1, Y < RY1,
-	true.
-	%\+ bagof(Room, wall(Room, WX0, WY0, WX1, WY1),
-	%WX0 > 0
+	X >= 0, Y >= 0, X < RX1, Y < RY1.
 
 teleport(Ent, X-Y) :-
 	Room-_ = Ent,
