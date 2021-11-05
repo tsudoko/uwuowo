@@ -8,6 +8,8 @@
 :- multifile size/2.
 :- dynamic sight_range/2.
 :- multifile sight_range/2.
+:- dynamic inventory/2.
+:- multifile inventory/2.
 
 :- dynamic current_action/1.
 

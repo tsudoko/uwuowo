@@ -1,5 +1,11 @@
 :- include("basedef.pl").
 
+inventory(_, []).
+inventory_add(Ent, Item) :-
+	once(inventory(Ent, Items)),
+	retract(inventory(Ent, Items)),
+	assert(inventory(Ent, [Item|Items])).
+
 % FIXME: doesn't work with more generalized queries like (someroom, X-Y), needs clpfd and probably something else than \+
 empty_tile(Room, X-Y) :-
 	size(Room, RX1-RY1),
@@ -20,7 +26,7 @@ get(Room-Ent, Direction) :-
 	location(Room-Ent, EntXY),
 	pair_add(EntXY, Direction, TargetXY),
 	once((location(Room-Target, TargetXY), item(Target))),
-	% inventory_add(Ent, Target),
+	inventory_add(Ent, Target),
 	retract(location(Room-Target, TargetXY)).
 
 move_rel(Room-Ent, Direction) :-

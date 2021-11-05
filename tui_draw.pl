@@ -5,7 +5,15 @@ redraw :-
 	write_room(Room),
 	nl, nl,
 	statistics(localused, StackBytes),
-	write(StackBytes), nl.
+	current_action(Action),
+	write(StackBytes), (Action \= move_rel -> write(' '), write(Action); true), nl,
+	inventory(self, Inventory),
+	write_inventory(Inventory), nl.
+
+write_inventory([]).
+write_inventory([I|Rest]) :-
+	tile(I, T), put_char(T),
+	!, write_inventory(Rest).
 
 write_room(Room) :-
 	size(Room, RW-RH),
