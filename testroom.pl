@@ -1,5 +1,5 @@
 :- include("basedef.pl").
-size(testroom, 20, 20).
+size(testroom, 20-20).
 
 location(testroom-table, 4-3).
 location(testroom-knife, 4-3).

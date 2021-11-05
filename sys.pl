@@ -2,7 +2,7 @@
 
 % FIXME: doesn't work with more generalized queries like (someroom, X-Y), needs clpfd and probably something else than \+
 empty_tile(Room, X-Y) :-
-	size(Room, RX1, RY1),
+	size(Room, RX1-RY1),
 	\+ (location(Room-Ent, X-Y), solid(Ent)),
 	X >= 0, Y >= 0, X < RX1, Y < RY1.
 

@@ -8,7 +8,7 @@ redraw :-
 	write(StackBytes), nl.
 
 write_room(Room) :-
-	size(Room, RW, RH),
+	size(Room, RW-RH),
 	BRW is RW+1, BRH is RH+1,
 	write_room(Room, BRW-BRH).
 
