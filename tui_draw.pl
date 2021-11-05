@@ -32,7 +32,7 @@ toplevel_ent(X) :-
 in_circle(CX-CY, CR, X-Y) :-
 	RX is X-CX, RY is Y-CY,
 	R is sqrt(RX*RX + RY*RY),
-	R =< CR.
+	R < CR.
 
 is_visible(X-Y) :-
 	location(_-self, SX-SY),
