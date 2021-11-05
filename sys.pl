@@ -43,10 +43,16 @@ get(Room-Ent, Direction) :-
 
 room_linked(R1-D1, R2-D2) :- room_linked(R2-D2, R1-D1).
 room_leave(Room-Ent, Where) :-
+	location(Room-(stairs-Where), X-Y),
+	location(Room-Ent, X-Y),
 	room_linked(Room-Where, TargetRoom-TargetDir),
-	location(TargetRoom-(stairs-TargetDir), X-Y),
+	location(TargetRoom-(stairs-TargetDir), TargetXY),
 	retract(location(Room-Ent, _)),
-	assert(location(TargetRoom-Ent, X-Y)).
+	assert(location(TargetRoom-Ent, TargetXY)).
+room_leave(Room-Ent, _) :-
+	location(Room-(exit-open), X-Y),
+	location(Room-Ent, X-Y),
+	abort.
 
 move_rel(Room-Ent, Direction) :-
 	location(Room-Ent, EntXY),
