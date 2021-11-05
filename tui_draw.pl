@@ -3,7 +3,9 @@ redraw :-
 	write("\x1b[0;0f"),
 	location(Room-self, _),
 	write_room(Room),
-	nl, nl.
+	nl, nl,
+	statistics(localused, StackBytes),
+	write(StackBytes), nl.
 
 write_room(Room) :-
 	size(Room, RW, RH),
