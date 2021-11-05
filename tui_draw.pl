@@ -21,10 +21,21 @@ toplevel_ent(X) :-
 	\+ item(X),
 	\+ floor(X).
 
+in_circle(CX-CY, CR, X-Y) :-
+	RX is X-CX, RY is Y-CY,
+	R is sqrt(RX*RX + RY*RY),
+	R =< CR.
+
+is_visible(X-Y) :-
+	location(_-self, SX-SY),
+	sight_range(self, SR),
+	in_circle(SX-SY, SR, X-Y).
+
 get_top_ent(Room, RW-RH, X-Y, Ent) :-
 	(is_rect_border(RW-RH, X-Y), Ent = wall);
 	EntX is X-1, EntY is Y-1,
 	(
+		(\+ is_visible(EntX-EntY), Ent = darkness);
 		(location(Room-Ent, EntX-EntY), toplevel_ent(Ent));
 		(location(Room-Ent, EntX-EntY), item(Ent));
 		(location(Room-Ent, EntX-EntY), solid(Ent));

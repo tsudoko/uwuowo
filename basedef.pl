@@ -6,6 +6,8 @@
 :- multifile ascii_graphic/2.
 :- dynamic size/3.
 :- multifile size/3.
+:- dynamic sight_range/2.
+:- multifile sight_range/2.
 
 :- multifile wall/5.
 :- multifile is_container/2.
