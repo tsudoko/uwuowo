@@ -6,6 +6,7 @@ sight_range(_, 2.5).
 
 :- [
 	"util.pl",
+	"cat.pl",
 	"testroom.pl",
 	"roomgen.pl",
 	"entities.pl",

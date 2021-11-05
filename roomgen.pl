@@ -38,6 +38,11 @@ gen_room(Room, WithKey) :- \+ size(Room, _-_),
 		; true
 	),
 	(
+		maybe,
+		put_ent(Room-cat, random)
+		; true
+	),
+	(
 		WithKey,
 		put_ent(Room-key, random)
 		; true

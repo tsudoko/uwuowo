@@ -1,8 +1,10 @@
+:- include("basedef.pl").
+
 move_self(X-Y) :-
 	location(Room-self, _),
 	move_rel(Room-self,  X-Y),
 	true.
-turn_pass. % TODO
+turn_pass :- turn_pass(_).
 
 keybind("7")      :- move_self(-1 - -1), turn_pass.
 keybind("9")      :- move_self( 1 - -1), turn_pass.
