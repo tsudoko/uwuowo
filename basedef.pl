@@ -9,6 +9,8 @@
 :- dynamic sight_range/2.
 :- multifile sight_range/2.
 
+:- dynamic current_action/1.
+
 :- multifile turn_pass/1.
 :- multifile wall/5.
 :- multifile is_container/2.

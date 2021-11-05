@@ -3,6 +3,7 @@
 stat(self, sanity, 100).
 location(testroom-self, 4-2).
 sight_range(_, 2.5).
+current_action(move_rel).
 
 :- [
 	"util.pl",

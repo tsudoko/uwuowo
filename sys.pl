@@ -16,6 +16,13 @@ rel_direction_to(EX-EY, TX-TY, OutX-OutY) :-
 	OutX is floor(-sign(EX-TX)),
 	OutY is floor(-sign(EY-TY)).
 
+get(Room-Ent, Direction) :-
+	location(Room-Ent, EntXY),
+	pair_add(EntXY, Direction, TargetXY),
+	once((location(Room-Target, TargetXY), item(Target))),
+	% inventory_add(Ent, Target),
+	retract(location(Room-Target, TargetXY)).
+
 move_rel(Room-Ent, Direction) :-
 	location(Room-Ent, EntXY),
 	pair_add(EntXY, Direction, MoveXY),
