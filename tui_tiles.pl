@@ -1,11 +1,11 @@
 include("basedef.pl").
 
-tile(wall, "＃").
 tile(floor, "・").
+tile(wall, "＃").
 
-tile(can-_, "缶").
-tile(knife, "刃").
-tile(table, "机").
 tile(self, "＠").
+tile(table, "机").
+tile(knife, "刃").
+tile(can-_, "缶").
 
 tile(_, "Ｘ").
