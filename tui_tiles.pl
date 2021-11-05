@@ -16,6 +16,7 @@ tile(stairs-_, "段").
 
 tile(table, "机").
 tile(key, "鍵").
+tile(lamp, "灯").
 tile(knife, "刃").
 tile(can-_, "缶").
 

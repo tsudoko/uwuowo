@@ -1,5 +1,8 @@
 :- include("basedef.pl").
 
+sight_range(Ent, 8) :- inventory(Ent, Inv), member(lamp, Inv).
+sight_range(_, 2.5).
+
 inventory(_, []).
 inventory_add(Ent, Item) :-
 	once(inventory(Ent, Items)),

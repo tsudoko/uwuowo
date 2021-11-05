@@ -3,6 +3,7 @@ solid(table).
 solid(exit-closed).
 item(cat).
 item(key).
+item(lamp).
 item(knife).
 item(can-_).
 floor(stairs-_).
