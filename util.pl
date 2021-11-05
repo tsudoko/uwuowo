@@ -1,4 +1,4 @@
-random_int(From, To, X) :-
+random_int(From, To, X) :- % [From, To] inclusive
 	random(Xf),
 	X is round(Xf * To) + From.
 

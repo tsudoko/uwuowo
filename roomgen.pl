@@ -16,10 +16,11 @@ room_full(Room, X-Y) :- location(Room-_, X-Y),
 
 put_ent(Room-Ent, random) :-
 	size(Room, W-H),
+	MX is W-1, MY is H-1,
 	\+ room_full(Room),
 	repeat,
-	random_int(0, W, X),
-	random_int(0, H, Y),
+	random_int(0, MX, X),
+	random_int(0, MY, Y),
 	\+ location(Room-Ent, X-Y),
 	!,
 	assert(location(Room-Ent, X-Y)).
