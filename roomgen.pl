@@ -7,7 +7,7 @@ room_full(Room) :-
 	room_full(Room, MX-MY), !.
 room_full(Room, 0-0) :- location(Room-_, 0-0).
 room_full(Room, 0-Y) :- location(Room-_, 0-Y),
-	size(Room, W-H), MX is W-1,
+	size(Room, W-_), MX is W-1,
 	NY is Y-1,
 	room_full(Room, MX-NY).
 room_full(Room, X-Y) :- location(Room-_, X-Y),
