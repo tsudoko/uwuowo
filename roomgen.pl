@@ -21,7 +21,7 @@ put_ent(Room-Ent, random) :-
 	repeat,
 	random_int(0, MX, X),
 	random_int(0, MY, Y),
-	\+ location(Room-Ent, X-Y),
+	empty_tile(Room, X-Y),
 	!,
 	assert(location(Room-Ent, X-Y)).
 put_ent(Room-Ent, X-Y) :-
