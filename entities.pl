@@ -6,6 +6,7 @@ item(key).
 item(lamp).
 item(knife).
 item(can-_).
+floor(exit-open).
 floor(stairs-_).
 
 location(Room-wall, X-Y) :-
