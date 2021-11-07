@@ -6,7 +6,8 @@ redraw :-
 	nl, nl,
 	statistics(localused, StackBytes),
 	current_action(Action),
-	write(StackBytes), (Action \= move_rel -> write(' '), write(Action); true), nl,
+	atom_concat(act_, DispAction, Action),
+	write(StackBytes), (Action \= act_move -> write(' '), write(DispAction); true), nl,
 	inventory(self, Inventory),
 	write_inventory(Inventory), nl.
 

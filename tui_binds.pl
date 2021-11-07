@@ -2,7 +2,7 @@
 
 toggle_action(A) :- current_action(A),
 	retract(current_action(A)),
-	assert(current_action(move_rel)).
+	assert(current_action(act_move)).
 toggle_action(A) :-
 	retract(current_action(_)),
 	assert(current_action(A)).
@@ -20,8 +20,8 @@ room_leave_self(Where) :-
 
 turn_pass :- turn_pass(_).
 
-keybind("O") :- toggle_action(open_).
-keybind("G") :- toggle_action(get).
+keybind("O") :- toggle_action(act_open).
+keybind("G") :- toggle_action(act_get).
 keybind(">") :- room_leave_self(down), turn_pass.
 keybind("<") :- room_leave_self(up)  , turn_pass.
 

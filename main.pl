@@ -1,7 +1,7 @@
 :- include("basedef.pl").
 
 stat(self, sanity, 100).
-current_action(move_rel).
+current_action(act_move).
 location(testroom-self, 4-2).
 room_linked(testroom-down, exitroom-up).
 

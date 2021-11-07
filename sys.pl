@@ -25,7 +25,7 @@ rel_direction_to(EX-EY, TX-TY, OutX-OutY) :-
 	OutX is floor(-sign(EX-TX)),
 	OutY is floor(-sign(EY-TY)).
 
-open_(Room-Ent, Direction) :-
+act_open(Room-Ent, Direction) :-
 	location(Room-Ent, EntXY),
 	pair_add(EntXY, Direction, TargetXY),
 	location(Room-(exit-closed), TargetXY),
@@ -34,7 +34,7 @@ open_(Room-Ent, Direction) :-
 	retract(location(Room-(exit-closed), TargetXY)),
 	assert(location(Room-(exit-open), TargetXY)).
 
-get(Room-Ent, Direction) :-
+act_get(Room-Ent, Direction) :-
 	location(Room-Ent, EntXY),
 	pair_add(EntXY, Direction, TargetXY),
 	once((location(Room-Target, TargetXY), item(Target))),
@@ -54,7 +54,7 @@ room_leave(Room-Ent, _) :-
 	location(Room-Ent, X-Y),
 	abort.
 
-move_rel(Room-Ent, Direction) :-
+act_move(Room-Ent, Direction) :-
 	location(Room-Ent, EntXY),
 	pair_add(EntXY, Direction, MoveXY),
 	teleport(Room-Ent, MoveXY).
@@ -63,7 +63,7 @@ move_towards(Room-Ent, Room-Target) :-
 	location(Room-Ent, EntXY),
 	location(Room-Target, TargetXY),
 	rel_direction_to(EntXY, TargetXY, Direction),
-	move_rel(Room-Ent, Direction).
+	act_move(Room-Ent, Direction).
 
 move_up(Ent) :-
 	location(Ent, X-Y),
