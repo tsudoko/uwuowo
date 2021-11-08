@@ -28,8 +28,16 @@ put_ent(Room-Ent, X-Y) :-
 	\+ location(Room-Ent, X-Y),
 	assert(location(Room-Ent, X-Y)).
 
-gen_room(Room) :- gen_room(Room, false, false).
-gen_room(Room, WithKey, WithExit) :- \+ size(Room, _-_),
+max_generated_room(Y) :-
+	bagof(X, size(gen-X, _), Xs),
+	max_list(Xs, Y); Y = 0.
+
+gen_room(Room) :- gen_room(false, false, Room).
+gen_room(WithKey, WithExit, Room) :-
+	max_generated_room(Max),
+	X is Max+1,
+	gen-X = Room,
+	\+ size(Room, _-_),
 	random_int(0, 20, W),
 	random_int(0, 20, H),
 	assert(size(Room, W-H)),

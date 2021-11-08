@@ -41,7 +41,6 @@ act_get(Room-Ent, Direction) :-
 	inventory_add(Ent, Target),
 	retract(location(Room-Target, TargetXY)).
 
-room_linked(R1-D1, R2-D2) :- room_linked(R2-D2, R1-D1).
 room_leave(Room-Ent, Where) :-
 	location(Room-(stairs-Where), X-Y),
 	location(Room-Ent, X-Y),

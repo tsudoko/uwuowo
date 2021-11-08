@@ -3,7 +3,6 @@
 stat(self, sanity, 100).
 current_action(act_move).
 location(testroom-self, 4-2).
-room_linked(testroom-down, exitroom-up).
 
 :- [
 	"util.pl",
@@ -18,8 +17,12 @@ room_linked(testroom-down, exitroom-up).
 	"tui.pl"
 ].
 
-:- gen_room(exitroom, false, true).
-:- put_ent(exitroom-(stairs-up), random).
+:- (
+	gen_room(false, true, ExitRoom),
+	assert(room_linked(testroom-down, ExitRoom-up)),
+	assert(room_linked(ExitRoom-up, testroom-down)),
+	put_ent(ExitRoom-(stairs-up), random)
+).
 :- put_ent(testroom-(stairs-down), random).
 :- put_ent(testroom-lamp, random).
 :- put_ent(testroom-key, random).
