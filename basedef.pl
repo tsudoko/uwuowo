@@ -4,8 +4,8 @@
 :- multifile stat/3.
 :- dynamic ascii_graphic/2.
 :- multifile ascii_graphic/2.
-:- dynamic size/2.
-:- multifile size/2.
+:- dynamic room/2.
+:- multifile room/2.
 :- dynamic sight_range/2.
 :- multifile sight_range/2.
 :- dynamic inventory/2.

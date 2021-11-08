@@ -17,7 +17,7 @@ write_inventory([I|Rest]) :-
 	!, write_inventory(Rest).
 
 write_room(Room) :-
-	size(Room, RW-RH),
+	room(Room, RW-RH),
 	BRW is RW+1, BRH is RH+1,
 	write_room(Room, BRW-BRH).
 
