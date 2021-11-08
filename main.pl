@@ -19,10 +19,8 @@ location(testroom-self, 4-2).
 
 :- (
 	gen_room(false, true, ExitRoom),
-	assert(room_linked(testroom-down, ExitRoom-up)),
-	assert(room_linked(ExitRoom-up, testroom-down)),
-	put_ent(ExitRoom-(stairs-up), random)
+	put_ent(ExitRoom-(stairs-up-testroom), random),
+	put_ent(testroom-(stairs-down-ExitRoom), random)
 ).
-:- put_ent(testroom-(stairs-down), random).
 :- put_ent(testroom-lamp, random).
 :- put_ent(testroom-key, random).

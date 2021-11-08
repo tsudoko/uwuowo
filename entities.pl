@@ -7,7 +7,7 @@ item(lamp).
 item(knife).
 item(can-_).
 floor(exit-open).
-floor(stairs-_).
+floor(stairs-_-_).
 
 location(Room-wall, X-Y) :-
 	\+ (var(X), var(Y)),

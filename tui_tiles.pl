@@ -10,9 +10,9 @@ tile(cat, "猫").
 tile(exit-closed, "扉").
 tile(exit-open, "戸").
 
-tile(stairs-down, "＞").
-tile(stairs-up, "＜").
-tile(stairs-_, "段").
+tile(stairs-down-_, "＞").
+tile(stairs-up-_, "＜").
+tile(stairs-_-_, "段").
 
 tile(table, "机").
 tile(key, "鍵").

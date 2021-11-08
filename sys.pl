@@ -41,11 +41,14 @@ act_get(Room-Ent, Direction) :-
 	inventory_add(Ent, Target),
 	retract(location(Room-Target, TargetXY)).
 
-room_leave(Room-Ent, Where) :-
-	location(Room-(stairs-Where), X-Y),
+opposite_dir_(up, down).
+opposite_dir_(left, right).
+opposite_dir(X, Y) :- opposite_dir_(X, Y); opposite_dir_(Y, X).
+room_leave(Room-Ent, SourceDir) :-
+	location(Room-(stairs-SourceDir-TargetRoom), X-Y),
 	location(Room-Ent, X-Y),
-	room_linked(Room-Where, TargetRoom-TargetDir),
-	location(TargetRoom-(stairs-TargetDir), TargetXY),
+	opposite_dir(SourceDir, TargetDir),
+	location(TargetRoom-(stairs-TargetDir-Room), TargetXY),
 	retract(location(Room-Ent, _)),
 	assert(location(TargetRoom-Ent, TargetXY)).
 room_leave(Room-Ent, _) :-
