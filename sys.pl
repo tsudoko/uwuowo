@@ -81,11 +81,14 @@ show_cursor :-
 hide_cursor :-
 	retract(location(_-cursor, _-_)).
 
-toggle_inventory_cursor :- inventory_cursor(self, _),
-	retract(inventory_cursor(self, _)).
-toggle_inventory_cursor :- assert(inventory_cursor(self, 0)),
+toggle_inventory_cursor :- inventory_cursor(self, _), hide_inventory_cursor.
+toggle_inventory_cursor :- show_inventory_cursor.
+
+show_inventory_cursor :- assert(inventory_cursor(self, 0)),
 	inventory(self, Inv),
 	(list_nth(Inv, 0, Item), description(Item, Desc), assert(status_msg(Desc)); true).
+hide_inventory_cursor :-
+	retract(inventory_cursor(self, _)).
 
 act_look(Room-_, Direction) :-
 	location(_-cursor, CurXY),

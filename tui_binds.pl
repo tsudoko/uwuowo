@@ -1,5 +1,9 @@
 :- include("basedef.pl").
 
+toggle_action(A) :- current_action(act_look),
+	hide_cursor, !, toggle_action(A).
+toggle_action(A) :- current_action(act_drop),
+	hide_inventory_cursor, !, toggle_action(A).
 toggle_action(A) :- current_action(A),
 	retract(current_action(A)),
 	assert(current_action(act_move)).
