@@ -3,6 +3,28 @@
 sight_range(Ent, 8) :- inventory(Ent, Inv), member(lamp, Inv).
 sight_range(_, 2.5).
 
+is_visible(X-Y) :-
+	location(_-self, SX-SY),
+	sight_range(self, SR),
+	in_circle(SX-SY, SR, X-Y).
+
+toplevel_ent(X) :-
+	\+ solid(X),
+	\+ item(X),
+	\+ floor(X).
+
+visible_location(Room-Ent, X-Y) :-
+	(
+		(room(Room, RW-RH), (X = -1; Y = -1; X is RW; Y is RH), Ent = wall);
+		(\+ is_visible(X-Y), Ent = darkness);
+		(location(Room-Ent, X-Y), toplevel_ent(Ent));
+		(location(Room-Ent, X-Y), item(Ent));
+		(location(Room-Ent, X-Y), solid(Ent));
+		(location(Room-Ent, X-Y), floor(Ent));
+		location(Room-Ent, X-Y)
+	);
+	Ent = floor.
+
 inventory(_, []).
 inventory_add(Ent, Item) :-
 	once(inventory(Ent, Items)),

@@ -6,6 +6,11 @@ pair_add(X1-Y1, X2-Y2, OX-OY) :-
 	OX is X1+X2,
 	OY is Y1+Y2.
 
+in_circle(CX-CY, CR, X-Y) :-
+	RX is X-CX, RY is Y-CY,
+	R is sqrt(RX*RX + RY*RY),
+	R < CR.
+
 list_reverse(X, Out) :- list_reverse_concat(X, [], Out).
 list_concat(X, Y, Out) :-
 	list_reverse(X, RevX),
