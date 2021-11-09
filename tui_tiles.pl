@@ -6,6 +6,7 @@ tile(wall, "＃").
 
 tile(self, "＠").
 tile(cat, "猫").
+tile(cursor, "＋").
 
 tile(exit-closed, "扉").
 tile(exit-open, "戸").

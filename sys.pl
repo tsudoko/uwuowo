@@ -15,6 +15,7 @@ toplevel_ent(X) :-
 
 visible_location(Room-Ent, X-Y) :-
 	(
+		(location(_-cursor, X-Y), Ent = cursor);
 		(room(Room, RW-RH), (X = -1; Y = -1; X is RW; Y is RH), Ent = wall);
 		(\+ is_visible(X-Y), Ent = darkness);
 		(location(Room-Ent, X-Y), toplevel_ent(Ent));
@@ -51,6 +52,30 @@ teleport(Ent, X-Y) :-
 rel_direction_to(EX-EY, TX-TY, OutX-OutY) :-
 	OutX is floor(-sign(EX-TX)),
 	OutY is floor(-sign(EY-TY)).
+
+toggle_cursor :- location(_-cursor, _), hide_cursor.
+toggle_cursor :- show_cursor.
+
+show_cursor :-
+	location(_-self, X-Y),
+	assert(location(_-cursor, X-Y)).
+
+hide_cursor :-
+	retract(location(_-cursor, _-_)).
+
+act_look(Room-_, Direction) :-
+	location(_-cursor, CurXY),
+	pair_add(CurXY, Direction, MX-MY),
+	room(Room, RW-RH),
+	MX >= 0, MY >= 0, MX < RW, MY < RH,
+	(
+		once(visible_location(Room-Ent, MX-MY)),
+		description(Ent, Desc),
+		assert(status_msg(Desc)); true
+	),
+	retract(location(_-cursor, _-_)),
+	assert(location(_-cursor, MX-MY)),
+	false.
 
 act_open(Room-Ent, Direction) :-
 	location(Room-Ent, EntXY),
