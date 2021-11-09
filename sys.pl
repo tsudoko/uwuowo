@@ -34,8 +34,7 @@ act_open(Room-Ent, Direction) :-
 	location(Room-Ent, EntXY),
 	pair_add(EntXY, Direction, TargetXY),
 	location(Room-(exit-closed), TargetXY),
-	inventory(Ent, Inv),
-	memberchk(key, Inv),
+	inventory_del(Ent, key),
 	retract(location(Room-(exit-closed), TargetXY)),
 	assert(location(Room-(exit-open), TargetXY)).
 
