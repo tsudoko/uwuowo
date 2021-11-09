@@ -10,7 +10,7 @@ floor(exit-open).
 floor(stairs-_-_).
 description(can-ID, Desc) :-
 	contents(can-ID, Contents) ->
-		(atom_concat(can, ' of ', CanOf), atom_concat(CanOf, Contents, Desc))
+		(atom_concat(can, ' of ', CanOf), atom_concat(CanOf, Contents, Desc), !)
 		; Desc = can.
 
 description(Ent-_-_, Ent) :- !.
