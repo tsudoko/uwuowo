@@ -38,8 +38,8 @@ gen_room(WithKey, WithExit, Room) :-
 	X is Max+1,
 	gen-X = Room,
 	\+ room(Room, _-_),
-	random_int(0, 20, W),
-	random_int(0, 20, H),
+	random_int(1, 20, W),
+	random_int(1, 20, H),
 	assert(room(Room, W-H)),
 	(
 		maybe,
