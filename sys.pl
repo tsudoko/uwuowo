@@ -8,6 +8,11 @@ inventory_add(Ent, Item) :-
 	once(inventory(Ent, Items)),
 	retract(inventory(Ent, Items)),
 	assert(inventory(Ent, [Item|Items])).
+inventory_del(Ent, Item) :-
+	once(inventory(Ent, Items)),
+	list_del_one(Item, Items, NewItems),
+	retract(inventory(Ent, Items)),
+	assert(inventory(Ent, NewItems)).
 
 % FIXME: doesn't work with more generalized queries like (someroom, X-Y), needs clpfd and probably something else than \+
 empty_tile(Room, X-Y) :-

@@ -5,3 +5,14 @@ random_int(From, To, X) :- % [From, To] inclusive
 pair_add(X1-Y1, X2-Y2, OX-OY) :-
 	OX is X1+X2,
 	OY is Y1+Y2.
+
+list_reverse(X, Out) :- list_reverse_concat(X, [], Out).
+list_concat(X, Y, Out) :-
+	list_reverse(X, RevX),
+	list_reverse_concat(RevX, Y, Out).
+list_reverse_concat([], Ys, Ys).
+list_reverse_concat([X|Xs], Ys, Out) :- list_reverse_concat(Xs, [X|Ys], Out).
+
+list_del_one(X, Items, Out) :- list_del_one(X, Items, [], Out).
+list_del_one(X, [X|Rest], OtherItems, Out) :- list_reverse_concat(OtherItems, Rest, Out).
+list_del_one(X, [Y|Rest], OtherItems, Out) :- list_del_one(X, Rest, [Y|OtherItems], Out).
