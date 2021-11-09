@@ -23,6 +23,7 @@ turn_pass :- turn_pass(_).
 keybind("L") :- toggle_cursor, toggle_action(act_look).
 keybind("O") :- toggle_action(act_open).
 keybind("G") :- toggle_action(act_get).
+keybind("D") :- toggle_inventory_cursor, toggle_action(act_drop).
 keybind(">") :- room_leave_self(down), turn_pass.
 keybind("<") :- room_leave_self(up)  , turn_pass.
 

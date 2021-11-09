@@ -10,8 +10,11 @@ redraw :-
 	write(StackBytes), (Action \= act_move -> write(' '), write(DispAction); true), nl,
 	inventory(self, Inventory),
 	write_inventory(Inventory), nl,
-	nl,
+	(inventory_cursor(self, Cur), put_char_n("　", Cur), tile(cursor, T), put_char(T), nl; nl),
 	(status_msg(Msg), write(Msg), retract(status_msg(Msg)), nl; nl).
+
+put_char_n(_, 0).
+put_char_n(X, N) :- put_char(X), NN is N-1, put_char_n(X, NN).
 
 write_inventory([]).
 write_inventory([I|Rest]) :-

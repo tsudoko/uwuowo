@@ -53,6 +53,24 @@ rel_direction_to(EX-EY, TX-TY, OutX-OutY) :-
 	OutX is floor(-sign(EX-TX)),
 	OutY is floor(-sign(EY-TY)).
 
+act_drop(Room-Ent, 0-0) :-
+	location(Room-Ent, X-Y),
+	inventory_cursor(Ent, Cur),
+	inventory(Ent, Inv),
+	list_nth(Inv, Cur, Item),
+	inventory_del(Ent, Item),
+	assert(location(Room-Item, X-Y)).
+act_drop(_-self, Dir-_) :-
+	inventory_cursor(self, Cur),
+	(Dir < 0 -> Cur > 0; true),
+	NewCur is Cur+Dir,
+	inventory(self, Inv),
+	list_nth(Inv, NewCur, Item),
+	(description(Item, Desc), assert(status_msg(Desc)); true),
+	retract(inventory_cursor(self, Cur)),
+	assert(inventory_cursor(self, NewCur)),
+	false.
+
 toggle_cursor :- location(_-cursor, _), hide_cursor.
 toggle_cursor :- show_cursor.
 
@@ -62,6 +80,12 @@ show_cursor :-
 
 hide_cursor :-
 	retract(location(_-cursor, _-_)).
+
+toggle_inventory_cursor :- inventory_cursor(self, _),
+	retract(inventory_cursor(self, _)).
+toggle_inventory_cursor :- assert(inventory_cursor(self, 0)),
+	inventory(self, Inv),
+	(list_nth(Inv, 0, Item), description(Item, Desc), assert(status_msg(Desc)); true).
 
 act_look(Room-_, Direction) :-
 	location(_-cursor, CurXY),

@@ -11,6 +11,9 @@
 :- dynamic inventory/2.
 :- multifile inventory/2.
 
+:- dynamic inventory_cursor/2.
+:- multifile inventory_cursor/2.
+
 :- dynamic on_get/1.
 :- multifile on_get/1.
 
