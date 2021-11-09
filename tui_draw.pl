@@ -9,7 +9,9 @@ redraw :-
 	atom_concat(act_, DispAction, Action),
 	write(StackBytes), (Action \= act_move -> write(' '), write(DispAction); true), nl,
 	inventory(self, Inventory),
-	write_inventory(Inventory), nl.
+	write_inventory(Inventory), nl,
+	nl,
+	(status_msg(Msg), write(Msg), retract(status_msg(Msg)), nl; nl).
 
 write_inventory([]).
 write_inventory([I|Rest]) :-

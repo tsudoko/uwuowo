@@ -9,6 +9,8 @@ item(can-_).
 floor(exit-open).
 floor(stairs-_-_).
 
+on_get(_).
+
 location(Room-wall, X-Y) :-
 	\+ (var(X), var(Y)),
 	wall(Room, X0-Y0, X1-Y1),

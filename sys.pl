@@ -34,7 +34,7 @@ act_open(Room-Ent, Direction) :-
 	location(Room-Ent, EntXY),
 	pair_add(EntXY, Direction, TargetXY),
 	location(Room-(exit-closed), TargetXY),
-	inventory_del(Ent, key),
+	(inventory_del(Ent, key); assert(status_msg("You need a key to open this door")), false),
 	retract(location(Room-(exit-closed), TargetXY)),
 	assert(location(Room-(exit-open), TargetXY)).
 
@@ -42,6 +42,7 @@ act_get(Room-Ent, Direction) :-
 	location(Room-Ent, EntXY),
 	pair_add(EntXY, Direction, TargetXY),
 	once((location(Room-Target, TargetXY), item(Target))),
+	on_get(Room-Target),
 	inventory_add(Ent, Target),
 	retract(location(Room-Target, TargetXY)).
 

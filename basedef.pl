@@ -11,6 +11,10 @@
 :- dynamic inventory/2.
 :- multifile inventory/2.
 
+:- dynamic on_get/1.
+:- multifile on_get/1.
+
+:- dynamic status_msg/1.
 :- dynamic current_action/1.
 
 :- multifile gen_room/3.
