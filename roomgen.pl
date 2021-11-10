@@ -42,7 +42,7 @@ gen_room(Room) :-
 	call(Gen).
 
 gen_empty_room(Room) :-
-	gen_room_id(Room), % TODO: allow setting name with var/1?
+	(var(Room) -> gen_room_id(Room); true),
 	\+ room(Room, _-_),
 	random_int(1, 21, W),
 	random_int(1, 21, H),
@@ -56,7 +56,7 @@ gen_btree_room(Room) :-
 	gen_btree_maze_(Room, RandomUnit).
 
 gen_btree_maze_(Room, RandomUnit) :-
-	gen_room_id(Room), % TODO: allow setting name with var/1?
+	(var(Room) -> gen_room_id(Room); true),
 	\+ room(Room, _-_),
 	random_int(1, 10, W),
 	random_int(1, 10, H),
