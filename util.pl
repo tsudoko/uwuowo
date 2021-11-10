@@ -24,3 +24,16 @@ list_nth([_|Xs], Nth, Out) :- Nnth is Nth-1, list_nth(Xs, Nnth, Out).
 list_del_one(X, Items, Out) :- list_del_one(X, Items, [], Out).
 list_del_one(X, [X|Rest], OtherItems, Out) :- list_reverse_concat(OtherItems, Rest, Out).
 list_del_one(X, [Y|Rest], OtherItems, Out) :- list_del_one(X, Rest, [Y|OtherItems], Out).
+
+fnv_prime(64, 1099511628211).
+fnv_offset(64, 14695981039346656037).
+fnv1a(64, Num, Hash) :-
+	fnv_prime(Bits, Prime),
+	fnv_offset(Bits, Offset),
+	fnv1a_(Bits, Prime, Num, Offset, Hash), !.
+fnv1a_(_, _, 0, OutHash, OutHash).
+fnv1a_(Bits, Prime, Num, AccHash, OutHash) :-
+	NAccHash is ((AccHash xor (Num/\16'ff)) * Prime) /\ ((1<<Bits)-1),
+	NNum is Num >> 8,
+	!,
+	fnv1a_(Bits, Prime, NNum, NAccHash, OutHash).

@@ -8,6 +8,7 @@ location(testroom-self, 4-2).
 	"util.pl",
 	"cat.pl",
 	"testroom.pl",
+	"maze_btree.pl",
 	"roomgen.pl",
 	"entities.pl",
 	"sys.pl",

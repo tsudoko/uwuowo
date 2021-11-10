@@ -10,6 +10,8 @@
 :- multifile sight_range/2.
 :- dynamic inventory/2.
 :- multifile inventory/2.
+:- dynamic btree_maze/3.
+:- multifile btree_maze/3.
 
 :- dynamic inventory_cursor/2.
 :- multifile inventory_cursor/2.
