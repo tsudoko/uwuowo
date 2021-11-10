@@ -19,7 +19,10 @@ location(testroom-self, 4-2).
 ].
 
 :- (
-	gen_room(false, true, ExitRoom),
+	gen_room(ExitRoom),
+	(\+ btree_maze(ExitRoom, _, _, _), maybe -> put_ent(ExitRoom-table, random); true),
+	(maybe -> put_ent(ExitRoom-cat, random); true),
+	put_ent(ExitRoom-(exit-closed), random),
 	put_ent(ExitRoom-(stairs-up-testroom), random),
 	put_ent(testroom-(stairs-down-ExitRoom), random)
 ).

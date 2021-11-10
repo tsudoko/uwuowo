@@ -18,7 +18,11 @@ list_concat(X, Y, Out) :-
 list_reverse_concat([], Ys, Ys).
 list_reverse_concat([X|Xs], Ys, Out) :- list_reverse_concat(Xs, [X|Ys], Out).
 
-list_nth([X|_], 0, X).
+list_random_choice(X, Out) :-
+	length(X, XLen),
+	random_int(0, XLen, N),
+	list_nth(X, N, Out).
+list_nth([X|_], 0, X) :- !.
 list_nth([_|Xs], Nth, Out) :- Nnth is Nth-1, list_nth(Xs, Nnth, Out).
 
 list_del_one(X, Items, Out) :- list_del_one(X, Items, [], Out).
