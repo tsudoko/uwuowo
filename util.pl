@@ -1,6 +1,6 @@
-random_int(From, To, X) :- % [From, To] inclusive
+random_int(From, To, X) :- % [From, To)
 	random(Xf),
-	X is round(Xf * To) + From.
+	X is floor(Xf * (To - From) + From).
 
 pair_add(X1-Y1, X2-Y2, OX-OY) :-
 	OX is X1+X2,

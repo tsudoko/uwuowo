@@ -16,11 +16,10 @@ room_full(Room, X-Y) :- location(Room-_, X-Y),
 
 put_ent(Room-Ent, random) :-
 	room(Room, W-H),
-	MX is W-1, MY is H-1,
 	\+ room_full(Room),
 	repeat,
-	random_int(0, MX, X),
-	random_int(0, MY, Y),
+	random_int(0, W, X),
+	random_int(0, H, Y),
 	empty_tile(Room, X-Y),
 	!,
 	assert(location(Room-Ent, X-Y)).
@@ -38,8 +37,8 @@ gen_room(WithKey, WithExit, Room) :-
 	X is Max+1,
 	gen-X = Room,
 	\+ room(Room, _-_),
-	random_int(1, 20, W),
-	random_int(1, 20, H),
+	random_int(1, 21, W),
+	random_int(1, 21, H),
 	assert(room(Room, W-H)),
 	(
 		maybe,
