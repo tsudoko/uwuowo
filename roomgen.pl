@@ -90,5 +90,5 @@ gen_btree_maze_(Room, RandomUnit) :-
 	\+ room(Room, _-_),
 	random_int(1, 10, W),
 	random_int(1, 10, H),
-	random_int(0, 16'ffffffffffffffff, Seed),
+	random_int(0, 16'ffff, Seed),
 	assert(btree_maze(Room, W-H, RandomUnit, Seed)).
