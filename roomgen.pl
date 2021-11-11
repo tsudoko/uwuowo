@@ -37,8 +37,10 @@ gen_rooms(InitRoom) :-
 	gen_rooms_(InitRoom, 100),
 	all_rooms(InitRoom, AllRooms),
 	[InitRoom|Rooms] = AllRooms,
+	location(ExitRoom-(exit-closed), _),
+	list_del_one(ExitRoom, Rooms, RoomsWithoutExit),
 	% unique items, should appear exactly once in the entire tree
-	list_random_choice(Rooms, KeyRoom), put_ent(KeyRoom-key, random),
+	list_random_choice(RoomsWithoutExit, KeyRoom), put_ent(KeyRoom-key, random),
 	list_random_choice(Rooms, LampRoom), put_ent(LampRoom-lamp, random).
 
 all_rooms(Root, Rooms) :- all_rooms([Root], [], Rooms).
