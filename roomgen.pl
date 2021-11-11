@@ -72,6 +72,9 @@ gen_rooms_(Room, _) :-
 gen_room(Room) :-
 	list_random_choice([
 		gen_empty_room,
+		gen_empty_room,
+		gen_empty_room,
+		gen_btree_room,
 		gen_btree_room,
 		gen_btree_maze
 	], Generator),
