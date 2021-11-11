@@ -57,7 +57,12 @@ gen_rooms_(Parent, Progress) :- Progress > 0,
 	NProgress is Progress - DP,
 	(random_int(0, 7, GenMore), GenMore = 0 -> gen_rooms_(Parent, Progress); true),
 	(random_int(0, 5, GenCat), GenCat = 0 -> put_ent(Room-cat, random); true),
-	(\+ btree_maze(Room, _, _, _), maybe -> put_ent(Room-table, random); true),
+	(
+		\+ btree_maze(Room, _, _, _),
+		\+ room(Room, 1-_),
+		\+ room(Room, _-1),
+		maybe ->
+			put_ent(Room-table, random); true),
 	gen_rooms_(Room, NProgress).
 gen_rooms_(Room, _) :-
 	\+ location(_-(exit-closed), _) -> put_ent(Room-(exit-closed), random); true.
