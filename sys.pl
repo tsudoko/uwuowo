@@ -33,7 +33,7 @@ inventory_add(Ent, Item) :-
 	assert(inventory(Ent, [Item|Items])).
 inventory_del(Ent, Item) :-
 	once(inventory(Ent, Items)),
-	list_del_one(Item, Items, NewItems),
+	list_del_one(Items, Item, NewItems),
 	retract(inventory(Ent, Items)),
 	assert(inventory(Ent, NewItems)).
 

@@ -25,9 +25,9 @@ list_random_choice(X, Out) :-
 list_nth([X|_], 0, X) :- !.
 list_nth([_|Xs], Nth, Out) :- Nnth is Nth-1, list_nth(Xs, Nnth, Out).
 
-list_del_one(X, Items, Out) :- list_del_one(X, Items, [], Out).
-list_del_one(X, [X|Rest], OtherItems, Out) :- list_reverse_concat(OtherItems, Rest, Out).
-list_del_one(X, [Y|Rest], OtherItems, Out) :- list_del_one(X, Rest, [Y|OtherItems], Out).
+list_del_one(Items, X, Out) :- list_del_one(Items, X, [], Out).
+list_del_one([X|Rest], X, OtherItems, Out) :- list_reverse_concat(OtherItems, Rest, Out).
+list_del_one([Y|Rest], X, OtherItems, Out) :- list_del_one(Rest, X, [Y|OtherItems], Out).
 
 fnv_prime(64, 1099511628211).
 fnv_offset(64, 14695981039346656037).
