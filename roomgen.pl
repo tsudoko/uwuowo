@@ -32,6 +32,36 @@ gen_room_id(ID) :-
 	NY is Y + 1,
 	ID = gen-NY.
 
+gen_rooms(InitRoom) :-
+	gen_room(InitRoom),
+	gen_rooms_(InitRoom, 100),
+	all_rooms(InitRoom, AllRooms),
+	[InitRoom|Rooms] = AllRooms,
+	% unique items, should appear exactly once in the entire tree
+	list_random_choice(Rooms, KeyRoom), put_ent(KeyRoom-key, random),
+	list_random_choice(Rooms, LampRoom), put_ent(LampRoom-lamp, random).
+
+all_rooms(Root, Rooms) :- all_rooms([Root], [], Rooms).
+all_rooms([], Rooms, Rooms).
+all_rooms([Root|Rest], Acc, Rooms) :-
+	findall(Child, location(Root-(_-down-Child), _), Children),
+	all_rooms(Children, [], ChildRooms),
+	list_concat(ChildRooms, Acc, NewRooms),
+	all_rooms(Rest, [Root|NewRooms], Rooms).
+
+gen_rooms_(Parent, Progress) :- Progress > 0,
+	gen_room(Room),
+	put_ent(Parent-(stairs-down-Room), random),
+	put_ent(Room-(stairs-up-Parent), random),
+	random_int(0, 50, DP),
+	NProgress is Progress - DP,
+	(random_int(0, 7, GenMore), GenMore = 0 -> gen_rooms_(Parent, Progress); true),
+	(random_int(0, 5, GenCat), GenCat = 0 -> put_ent(Room-cat, random); true),
+	(\+ btree_maze(Room, _, _, _), maybe -> put_ent(Room-table, random); true),
+	gen_rooms_(Room, NProgress).
+gen_rooms_(Room, _) :-
+	\+ location(_-(exit-closed), _) -> put_ent(Room-(exit-closed), random); true.
+
 gen_room(Room) :-
 	list_random_choice([
 		gen_empty_room,

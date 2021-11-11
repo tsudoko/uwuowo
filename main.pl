@@ -2,7 +2,6 @@
 
 stat(self, sanity, 100).
 current_action(act_move).
-location(testroom-self, 4-2).
 
 :- [
 	"util.pl",
@@ -19,12 +18,8 @@ location(testroom-self, 4-2).
 ].
 
 :- (
-	gen_room(ExitRoom),
-	(\+ btree_maze(ExitRoom, _, _, _), maybe -> put_ent(ExitRoom-table, random); true),
-	(maybe -> put_ent(ExitRoom-cat, random); true),
-	put_ent(ExitRoom-(exit-closed), random),
-	put_ent(ExitRoom-(stairs-up-testroom), random),
-	put_ent(testroom-(stairs-down-ExitRoom), random)
+	gen_rooms(StartRoom),
+	put_ent(StartRoom-self, random)
 ).
 :- put_ent(testroom-lamp, random).
 :- put_ent(testroom-key, random).
