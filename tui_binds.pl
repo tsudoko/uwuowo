@@ -6,10 +6,10 @@ toggle_action(A) :- current_action(act_drop),
 	hide_inventory_cursor, !, toggle_action(A).
 toggle_action(A) :- current_action(A),
 	retract(current_action(A)),
-	assert(current_action(act_move)).
+	assertz(current_action(act_move)).
 toggle_action(A) :-
 	retract(current_action(_)),
-	assert(current_action(A)).
+	assertz(current_action(A)).
 
 act_self(X-Y) :-
 	location(Room-self, _),

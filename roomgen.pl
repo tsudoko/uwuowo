@@ -23,10 +23,10 @@ put_ent(Room-Ent, random) :-
 	empty_tile(Room, X-Y),
 	(floor(Ent) -> \+ (location(Room-REnt, X-Y), floor(REnt)); true),
 	!,
-	assert(location(Room-Ent, X-Y)).
+	assertz(location(Room-Ent, X-Y)).
 put_ent(Room-Ent, X-Y) :-
 	\+ location(Room-Ent, X-Y),
-	assert(location(Room-Ent, X-Y)).
+	assertz(location(Room-Ent, X-Y)).
 
 gen_room_id(ID) :-
 	(bagof(X, room(gen-X, _), Xs), max_list(Xs, Y); Y = 0),
@@ -87,7 +87,7 @@ gen_empty_room(Room) :-
 	\+ room(Room, _-_),
 	random_int(1, 21, W),
 	random_int(1, 21, H),
-	assert(room(Room, W-H)).
+	assertz(room(Room, W-H)).
 
 gen_btree_maze(Room) :-
 	gen_btree_maze_(Room, tile).
@@ -102,4 +102,4 @@ gen_btree_maze_(Room, RandomUnit) :-
 	random_int(1, 10, W),
 	random_int(1, 10, H),
 	random_int(0, 0xffff, Seed),
-	assert(btree_maze(Room, W-H, RandomUnit, Seed)).
+	assertz(btree_maze(Room, W-H, RandomUnit, Seed)).

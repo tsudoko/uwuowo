@@ -30,12 +30,12 @@ inventory(_, []).
 inventory_add(Ent, Item) :-
 	once(inventory(Ent, Items)),
 	retract(inventory(Ent, Items)),
-	assert(inventory(Ent, [Item|Items])).
+	assertz(inventory(Ent, [Item|Items])).
 inventory_del(Ent, Item) :-
 	once(inventory(Ent, Items)),
 	list_del_one(Items, Item, NewItems),
 	retract(inventory(Ent, Items)),
-	assert(inventory(Ent, NewItems)).
+	assertz(inventory(Ent, NewItems)).
 
 % FIXME: doesn't work with more generalized queries like (someroom, X-Y), needs clpfd and probably something else than \+
 empty_tile(Room, X-Y) :-
@@ -47,7 +47,7 @@ teleport(Ent, X-Y) :-
 	Room-_ = Ent,
 	empty_tile(Room, X-Y),
 	retract(location(Ent, _-_)),
-	assert(location(Ent, X-Y)).
+	assertz(location(Ent, X-Y)).
 
 rel_direction_to(EX-EY, TX-TY, OutX-OutY) :-
 	OutX is floor(-sign(EX-TX)),
@@ -59,16 +59,16 @@ act_drop(Room-Ent, 0-0) :-
 	inventory(Ent, Inv),
 	list_nth(Inv, Cur, Item),
 	inventory_del(Ent, Item),
-	assert(location(Room-Item, X-Y)).
+	assertz(location(Room-Item, X-Y)).
 act_drop(_-self, Dir-_) :-
 	inventory_cursor(self, Cur),
 	(Dir < 0 -> Cur > 0; true),
 	NewCur is Cur+Dir,
 	inventory(self, Inv),
 	list_nth(Inv, NewCur, Item),
-	(description(Item, Desc), assert(status_msg(Desc)); true),
+	(description(Item, Desc), assertz(status_msg(Desc)); true),
 	retract(inventory_cursor(self, Cur)),
-	assert(inventory_cursor(self, NewCur)),
+	assertz(inventory_cursor(self, NewCur)),
 	false.
 
 toggle_cursor :- location(_-cursor, _), hide_cursor.
@@ -76,7 +76,7 @@ toggle_cursor :- show_cursor.
 
 show_cursor :-
 	location(_-self, X-Y),
-	assert(location(_-cursor, X-Y)).
+	assertz(location(_-cursor, X-Y)).
 
 hide_cursor :-
 	retract(location(_-cursor, _-_)).
@@ -84,9 +84,9 @@ hide_cursor :-
 toggle_inventory_cursor :- inventory_cursor(self, _), hide_inventory_cursor.
 toggle_inventory_cursor :- show_inventory_cursor.
 
-show_inventory_cursor :- assert(inventory_cursor(self, 0)),
+show_inventory_cursor :- assertz(inventory_cursor(self, 0)),
 	inventory(self, Inv),
-	(list_nth(Inv, 0, Item), description(Item, Desc), assert(status_msg(Desc)); true).
+	(list_nth(Inv, 0, Item), description(Item, Desc), assertz(status_msg(Desc)); true).
 hide_inventory_cursor :-
 	retract(inventory_cursor(self, _)).
 
@@ -98,10 +98,10 @@ act_look(Room-_, Direction) :-
 	(
 		once(visible_location(Room-Ent, MX-MY)),
 		description(Ent, Desc),
-		assert(status_msg(Desc)); true
+		assertz(status_msg(Desc)); true
 	),
 	retract(location(_-cursor, _-_)),
-	assert(location(_-cursor, MX-MY)),
+	assertz(location(_-cursor, MX-MY)),
 	false.
 
 act_open(Room-Ent, Direction) :-
@@ -109,10 +109,10 @@ act_open(Room-Ent, Direction) :-
 	pair_add(EntXY, Direction, TargetXY),
 	location(Room-(exit-closed), TargetXY),
 	(inventory_del(Ent, key);
-		Ent = self -> assert(status_msg("You need a key to open this door")),
+		Ent = self -> assertz(status_msg("You need a key to open this door")),
 	false),
 	retract(location(Room-(exit-closed), TargetXY)),
-	assert(location(Room-(exit-open), TargetXY)).
+	assertz(location(Room-(exit-open), TargetXY)).
 
 act_get(Room-Ent, Direction) :-
 	location(Room-Ent, EntXY),
@@ -131,7 +131,7 @@ room_leave(Room-Ent, SourceDir) :-
 	opposite_dir(SourceDir, TargetDir),
 	location(TargetRoom-(stairs-TargetDir-Room), TargetXY),
 	retract(location(Room-Ent, _)),
-	assert(location(TargetRoom-Ent, TargetXY)).
+	assertz(location(TargetRoom-Ent, TargetXY)).
 room_leave(Room-Ent, _) :-
 	location(Room-(exit-open), X-Y),
 	location(Room-Ent, X-Y),
