@@ -2,8 +2,6 @@
 :- multifile(location/2).
 :- dynamic(stat/3).
 :- multifile(stat/3).
-:- dynamic(ascii_graphic/2).
-:- multifile(ascii_graphic/2).
 :- dynamic(room/2).
 :- multifile(room/2).
 :- dynamic(sight_range/2).
