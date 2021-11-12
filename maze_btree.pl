@@ -1,3 +1,5 @@
+:- include('basedef.pl').
+
 room(Room, RW-RH) :- btree_maze(Room, W-H, _, _),
 	RW is W*2+1, RH is H*2+1.
 

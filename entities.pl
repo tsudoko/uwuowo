@@ -1,3 +1,5 @@
+:- include('basedef.pl').
+
 solid(wall).
 solid(table).
 solid(exit-closed).
