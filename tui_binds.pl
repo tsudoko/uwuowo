@@ -1,4 +1,4 @@
-:- include("basedef.pl").
+:- include('basedef.pl').
 
 toggle_action(A) :- current_action(act_look),
 	hide_cursor, !, toggle_action(A).

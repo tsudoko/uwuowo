@@ -1,4 +1,4 @@
-include("basedef.pl").
+include('basedef.pl').
 
 tile(darkness, "　").
 tile(floor, "・").

@@ -1,4 +1,4 @@
-:- include("basedef.pl").
+:- include('basedef.pl').
 
 % ugly
 room_full(Room) :-

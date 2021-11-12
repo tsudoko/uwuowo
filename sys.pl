@@ -1,4 +1,4 @@
-:- include("basedef.pl").
+:- include('basedef.pl').
 
 sight_range(Ent, 8) :- inventory(Ent, Inv), member(lamp, Inv).
 sight_range(_, 2.5).

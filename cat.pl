@@ -1,4 +1,4 @@
-:- include("basedef.pl").
+:- include('basedef.pl').
 
 on_get(_-cat) :-
 	assertz(status_msg("m-meow?")).

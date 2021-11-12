@@ -1,4 +1,4 @@
-:- include("basedef.pl").
+:- include('basedef.pl').
 room(testroom, 20-20).
 
 location(testroom-cat, 5-5).
