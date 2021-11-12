@@ -1,5 +1,6 @@
+maybe :- random_int(0, 2, X), X =:= 0.
 random_int(From, To, X) :- % [From, To)
-	random(Xf),
+	random:random(Xf),
 	X is floor(Xf * (To - From) + From).
 
 pair_add(X1-Y1, X2-Y2, OX-OY) :-
