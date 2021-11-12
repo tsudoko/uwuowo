@@ -29,7 +29,7 @@ put_ent(Room-Ent, X-Y) :-
 	assertz(location(Room-Ent, X-Y)).
 
 gen_room_id(ID) :-
-	(bagof(X, room(gen-X, _), Xs), max_list(Xs, Y); Y = 0),
+	(bagof(X, room(gen-X, _), Xs), list_max(Xs, Y); Y = 0),
 	NY is Y + 1,
 	ID = gen-NY.
 

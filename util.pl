@@ -11,7 +11,15 @@ in_circle(CX-CY, CR, X-Y) :-
 	R is sqrt(RX*RX + RY*RY),
 	R < CR.
 
+list_max([X|Xs], Out) :- list_max(Xs, X, Out).
+list_max([], Out, Out).
+list_max([X|Xs], Max, Out) :- Max < X, !, list_max(Xs, X, Out).
+list_max([_|Xs], Max, Out) :- !, list_max(Xs, Max, Out).
+list_length(X, Out) :- list_length(X, 0, Out).
+list_length([], L, L).
+list_length([_|Xs], L, Out) :- NL is L + 1, list_length(Xs, NL, Out).
 list_reverse(X, Out) :- list_reverse_concat(X, [], Out).
+% FIXME: infinite loop on e.g. list_concat(X, [2], [2, 1])
 list_concat(X, Y, Out) :-
 	list_reverse(X, RevX),
 	list_reverse_concat(RevX, Y, Out).
@@ -19,7 +27,7 @@ list_reverse_concat([], Ys, Ys).
 list_reverse_concat([X|Xs], Ys, Out) :- list_reverse_concat(Xs, [X|Ys], Out).
 
 list_random_choice(X, Out) :-
-	length(X, XLen),
+	list_length(X, XLen),
 	random_int(0, XLen, N),
 	list_nth(X, N, Out).
 list_nth([X|_], 0, X) :- !.
