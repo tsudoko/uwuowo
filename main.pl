@@ -12,7 +12,7 @@
 stat(self, sanity, 100).
 current_action(act_move).
 
-:- [
+:- initialization(([
 	'util.pl',
 	'cat.pl',
 	'testroom.pl',
@@ -24,11 +24,9 @@ current_action(act_move).
 	'tui_tiles.pl',
 	'tui_binds.pl',
 	'tui.pl'
-].
-
-:- (
+],
+	put_ent(testroom-lamp, random),
+	put_ent(testroom-key, random),
 	gen_rooms(StartRoom),
 	put_ent(StartRoom-self, random)
-).
-:- put_ent(testroom-lamp, random).
-:- put_ent(testroom-key, random).
+)).
