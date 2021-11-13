@@ -2,6 +2,11 @@
 
 :- initialization((current_prolog_flag(dialect, swi), set_prolog_flag(iso, true); true)).
 :- initialization((current_prolog_flag(dialect, swi), ['compat/stack_usage_swi.pl']; true)).
+:- initialization((current_prolog_flag(dialect, xsb), [
+	'compat/divmod.pl',
+	'compat/stack_usage_xsb.pl',
+	'compat/get_single_char_unix.pl'
+]; true)).
 :- set_prolog_flag(double_quotes, codes).
 
 stat(self, sanity, 100).
