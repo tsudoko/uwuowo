@@ -1,6 +1,6 @@
 redraw :-
-	put_codes("\x1b[1J"),
-	put_codes("\x1b[0;0f"),
+	put_codes("\x1b\[1J"),
+	put_codes("\x1b\[0;0f"),
 	location(Room-self, _),
 	write_room(Room),
 	nl, nl,

@@ -31,30 +31,30 @@ keybind("D") :- toggle_inventory_cursor, toggle_action(act_drop).
 keybind(">") :- room_leave_self(down), turn_pass.
 keybind("<") :- room_leave_self(up)  , turn_pass.
 
-keybind("7")      :- act_self(-1 - -1), turn_pass.
-keybind("9")      :- act_self( 1 - -1), turn_pass.
-keybind("1")      :- act_self(-1 -  1), turn_pass.
-keybind("3")      :- act_self( 1 -  1), turn_pass.
+keybind("7")       :- act_self(-1 - -1), turn_pass.
+keybind("9")       :- act_self( 1 - -1), turn_pass.
+keybind("1")       :- act_self(-1 -  1), turn_pass.
+keybind("3")       :- act_self( 1 -  1), turn_pass.
 
-keybind("\033[A") :- act_self( 0 - -1), turn_pass.
-keybind("8")      :- act_self( 0 - -1), turn_pass.
-keybind("k")      :- act_self( 0 - -1), turn_pass.
+keybind("\033\[A") :- act_self( 0 - -1), turn_pass.
+keybind("8")       :- act_self( 0 - -1), turn_pass.
+keybind("k")       :- act_self( 0 - -1), turn_pass.
 
-keybind("\033[B") :- act_self( 0 -  1), turn_pass.
-keybind("2")      :- act_self( 0 -  1), turn_pass.
-keybind("j")      :- act_self( 0 -  1), turn_pass.
+keybind("\033\[B") :- act_self( 0 -  1), turn_pass.
+keybind("2")       :- act_self( 0 -  1), turn_pass.
+keybind("j")       :- act_self( 0 -  1), turn_pass.
 
-keybind("5")      :- act_self( 0 -  0), turn_pass.
-keybind("\r")     :- act_self( 0 -  0), turn_pass.
-keybind(" ")      :-                    turn_pass.
+keybind("5")       :- act_self( 0 -  0), turn_pass.
+keybind("\r")      :- act_self( 0 -  0), turn_pass.
+keybind(" ")       :-                    turn_pass.
 
-keybind("\033[C") :- act_self( 1 -  0), turn_pass.
-keybind("6")      :- act_self( 1 -  0), turn_pass.
-keybind("l")      :- act_self( 1 -  0), turn_pass.
+keybind("\033\[C") :- act_self( 1 -  0), turn_pass.
+keybind("6")       :- act_self( 1 -  0), turn_pass.
+keybind("l")       :- act_self( 1 -  0), turn_pass.
 
-keybind("\033[D") :- act_self(-1 -  0), turn_pass.
-keybind("4")      :- act_self(-1 -  0), turn_pass.
-keybind("h")      :- act_self(-1 -  0), turn_pass.
+keybind("\033\[D") :- act_self(-1 -  0), turn_pass.
+keybind("4")       :- act_self(-1 -  0), turn_pass.
+keybind("h")       :- act_self(-1 -  0), turn_pass.
 
 keybind(_).
 run_keybind(X) :- keybind(X).
