@@ -45,7 +45,7 @@ list_del_one([Y|Rest], X, OtherItems, Out) :- list_del_one(Rest, X, [Y|OtherItem
 
 fnv_prime(64, 1099511628211).
 fnv_offset(64, 14695981039346656037).
-fnv1a(64, Num, Hash) :-
+fnv1a(Bits, Num, Hash) :-
 	fnv_prime(Bits, Prime),
 	fnv_offset(Bits, Offset),
 	fnv1a_(Bits, Prime, Num, Offset, Hash), !.
