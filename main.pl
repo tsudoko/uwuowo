@@ -19,7 +19,6 @@
 )).
 
 stat(self, sanity, 100).
-current_action(act_move).
 
 :- initialization(([
 	'util.pl',
@@ -37,5 +36,6 @@ current_action(act_move).
 	put_ent(testroom-lamp, random),
 	put_ent(testroom-key, random),
 	gen_rooms(StartRoom),
-	put_ent(StartRoom-self, random)
+	put_ent(StartRoom-self, random),
+	asserta(current_action(act_move))
 )).
