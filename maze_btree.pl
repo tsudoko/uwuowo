@@ -15,7 +15,7 @@ location(Room-wall, X-Y) :- btree_maze(Room, W-H, RandomUnit, Seed),
 		RandomUnit = row ->
 			HashInput is Seed + TileY
 	),
-	fnv1a(64, HashInput, Directions),
+	fnv1a(32, HashInput, Directions),
 	D is (Directions >> 6) /\ 1,
 	\+ btree_maze_floor(D, MX-MY).
 

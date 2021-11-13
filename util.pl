@@ -43,7 +43,9 @@ list_del_one(Items, X, Out) :- list_del_one(Items, X, [], Out).
 list_del_one([X|Rest], X, OtherItems, Out) :- list_reverse_concat(OtherItems, Rest, Out).
 list_del_one([Y|Rest], X, OtherItems, Out) :- list_del_one(Rest, X, [Y|OtherItems], Out).
 
+fnv_prime(32, 16777619).
 fnv_prime(64, 1099511628211).
+fnv_offset(32, 2166136261).
 fnv_offset(64, 14695981039346656037).
 fnv1a(Bits, Num, Hash) :-
 	fnv_prime(Bits, Prime),
