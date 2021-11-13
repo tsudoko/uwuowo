@@ -4,7 +4,7 @@ redraw :-
 	location(Room-self, _),
 	write_room(Room),
 	nl, nl,
-	statistics(localused, StackBytes),
+	stack_usage(StackBytes),
 	current_action(Action),
 	atom_concat(act_, DispAction, Action),
 	write(StackBytes), (Action \= act_move -> write(' '), write(DispAction); true), nl,

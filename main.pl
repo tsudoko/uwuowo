@@ -1,6 +1,7 @@
 :- include('basedef.pl').
 
 :- initialization((current_prolog_flag(dialect, swi), set_prolog_flag(iso, true); true)).
+:- initialization((current_prolog_flag(dialect, swi), ['compat/stack_usage_swi.pl']; true)).
 :- set_prolog_flag(double_quotes, codes).
 
 stat(self, sanity, 100).
