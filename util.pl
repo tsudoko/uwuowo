@@ -53,7 +53,7 @@ fnv1a(Bits, Num, Hash) :-
 	fnv1a_(Bits, Prime, Num, Offset, Hash), !.
 fnv1a_(_, _, 0, OutHash, OutHash).
 fnv1a_(Bits, Prime, Num, AccHash, OutHash) :-
-	NAccHash is ((AccHash xor (Num/\0xff)) * Prime) /\ ((1<<Bits)-1),
+	NAccHash is (xor(AccHash, Num/\0xff) * Prime) /\ ((1<<Bits)-1),
 	NNum is Num >> 8,
 	!,
 	fnv1a_(Bits, Prime, NNum, NAccHash, OutHash).
