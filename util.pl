@@ -1,6 +1,6 @@
 maybe :- random_int(0, 2, X), X =:= 0.
 random_int(From, To, X) :- % [From, To)
-	random:random(Xf),
+	random(Xf),
 	X is floor(Xf * (To - From) + From).
 
 put_codes([]).

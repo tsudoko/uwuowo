@@ -7,7 +7,11 @@
 		['compat/stack_usage_swi.pl']
 	; true),
 	(current_prolog_flag(dialect, xsb) ->
-		['compat/stack_usage_xsb.pl', 'compat/get_single_char_unix.pl']
+		[
+			'compat/random_random.pl',
+			'compat/stack_usage_xsb.pl',
+			'compat/get_single_char_unix.pl'
+		]
 	; true),
 	(\+ current_predicate(divmod/4) -> ['compat/divmod.pl']; true)
 )).
