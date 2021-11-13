@@ -14,7 +14,8 @@
 		],
 		random:datime_setrand
 	; true),
-	(\+ current_predicate(divmod/4) -> ['compat/divmod.pl']; true)
+	(\+ current_predicate(divmod/4) -> ['compat/divmod.pl']; true),
+	(\+ current_predicate(stack_usage/1) -> ['compat/stack_usage_none.pl']; true)
 )).
 
 stat(self, sanity, 100).
