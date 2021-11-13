@@ -11,8 +11,7 @@ get_escape(L, E) :-
 
 run :-
 	redraw,
-	get_key(KList),
-	string_chars(K, KList),
+	get_key(K),
 	run_keybind(K),
 	!,
 	run.

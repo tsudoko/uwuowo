@@ -12,12 +12,12 @@ floor(exit-open).
 floor(stairs-_-_).
 description(can-ID, Desc) :-
 	contents(can-ID, Contents) ->
-		(atom_concat(can, ' of ', CanOf), atom_concat(CanOf, Contents, Desc), !)
-		; Desc = can.
+		(atom_concat(can, ' of ', CanOf), atom_concat(CanOf, Contents, DescAtom), atom_codes(DescAtom, Desc), !)
+		; Desc = "can".
 
-description(Ent-_-_, Ent) :- !.
-description(Ent-_, Ent) :- !.
-description(Ent, Ent) :- !.
+description(Ent-_-_, Desc) :- description(Ent, Desc), !.
+description(Ent-_, Desc) :- description(Ent, Desc), !.
+description(Ent, Desc) :- atom_codes(Ent, Desc), !.
 
 on_get(_).
 

@@ -1,6 +1,6 @@
 redraw :-
-	write("\x1b[1J"),
-	write("\x1b[0;0f"),
+	put_codes("\x1b[1J"),
+	put_codes("\x1b[0;0f"),
 	location(Room-self, _),
 	write_room(Room),
 	nl, nl,
@@ -10,15 +10,15 @@ redraw :-
 	write(StackBytes), (Action \= act_move -> write(' '), write(DispAction); true), nl,
 	inventory(self, Inventory),
 	write_inventory(Inventory), nl,
-	(inventory_cursor(self, Cur), put_char_n("　", Cur), tile(cursor, T), put_char(T), nl; nl),
-	(status_msg(Msg), write(Msg), retract(status_msg(Msg)), nl; nl).
+	(inventory_cursor(self, Cur), put_codes_n("　", Cur), tile(cursor, T), put_codes(T), nl; nl),
+	(status_msg(Msg), put_codes(Msg), retract(status_msg(Msg)), nl; nl).
 
-put_char_n(_, 0).
-put_char_n(X, N) :- put_char(X), NN is N-1, put_char_n(X, NN).
+put_codes_n(_, 0).
+put_codes_n(X, N) :- put_codes(X), NN is N-1, put_codes_n(X, NN).
 
 write_inventory([]).
 write_inventory([I|Rest]) :-
-	tile(I, T), put_char(T),
+	tile(I, T), put_codes(T),
 	!, write_inventory(Rest).
 
 write_room(Room) :-
@@ -31,7 +31,7 @@ write_room(Room, RW-RH) :- write_room(Room, RW-RH, 0-0), !.
 write_tile(Room, X-Y) :-
 	EntX is X-1, EntY is Y-1,
 	visible_location(Room-Ent, EntX-EntY),
-	tile(Ent, T), put_char(T).
+	tile(Ent, T), put_codes(T).
 
 write_room(Room, RW-RH, RW-RH) :-
 	write_tile(Room, RW-RH).
