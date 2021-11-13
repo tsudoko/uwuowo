@@ -15,6 +15,8 @@ in_circle(CX-CY, CR, X-Y) :-
 	R is sqrt(RX*RX + RY*RY),
 	R < CR.
 
+list_member([X|_], X).
+list_member([_|Xs], X) :- list_member(Xs, X).
 list_max([X|Xs], Out) :- list_max(Xs, X, Out).
 list_max([], Out, Out).
 list_max([X|Xs], Max, Out) :- Max < X, !, list_max(Xs, X, Out).

@@ -1,6 +1,6 @@
 :- include('basedef.pl').
 
-sight_range(Ent, 8) :- inventory(Ent, Inv), member(lamp, Inv).
+sight_range(Ent, 8) :- inventory(Ent, Inv), list_member(Inv, lamp).
 sight_range(_, 2.5).
 
 is_visible(X-Y) :-
