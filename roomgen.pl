@@ -65,7 +65,7 @@ gen_rooms_(Parent, Progress) :- Progress > 0,
 		\+ room(Room, 1-_),
 		\+ room(Room, _-1),
 		maybe ->
-			put_ent(Room-table, random); true),
+			put_ent(Room-(table), random); true),
 	gen_rooms_(Room, NProgress).
 gen_rooms_(Room, _) :-
 	\+ location(_-(exit-closed), _) -> put_ent(Room-(exit-closed), random); true.

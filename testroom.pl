@@ -2,7 +2,7 @@
 room(testroom, 20-20).
 
 location(testroom-cat, 5-5).
-location(testroom-table, 4-3).
+location(testroom-(table), 4-3).
 location(testroom-knife, 4-3).
 location(testroom-(can-0), 4-3).
 contents(can-0, beer).
