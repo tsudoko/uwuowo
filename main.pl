@@ -31,7 +31,7 @@
 
 stat(self, sanity, 100).
 
-:- initialization(([
+:- initialization([
 	'util.pl',
 	'cat.pl',
 	'testroom.pl',
@@ -43,10 +43,12 @@ stat(self, sanity, 100).
 	'tui_tiles.pl',
 	'tui_binds.pl',
 	'tui.pl'
-],
+]).
+
+init :-
 	put_ent(testroom-lamp, random),
 	put_ent(testroom-key, random),
 	gen_rooms(StartRoom),
 	put_ent(StartRoom-self, random),
-	asserta(current_action(act_move))
-)).
+	asserta(current_action(act_move)),
+	!.
