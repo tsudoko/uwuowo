@@ -10,7 +10,7 @@ redraw :-
 	write(StackBytes), (Action \= act_move -> write(' '), write(DispAction); true), nl,
 	inventory(self, Inventory),
 	write_inventory(Inventory), nl,
-	(inventory_cursor(self, Cur), put_codes_n("　", Cur), tile(cursor, T), put_codes(T), nl; nl),
+	(inventory_cursor(self, Cur), tile(darkness, ET), put_codes_n(ET, Cur), tile(cursor, T), put_codes(T), nl; nl),
 	(status_msg(Msg), put_codes(Msg), retract(status_msg(Msg)), nl; nl).
 
 put_codes_n(_, 0).
