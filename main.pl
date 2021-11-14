@@ -10,9 +10,13 @@
 		[
 			'compat/random_random.pl',
 			'compat/stack_usage_xsb.pl',
-			'compat/get_single_char_unix.pl'
+			'compat/get_key_unix.pl'
 		],
 		random:datime_setrand
+	; true),
+	(\+ current_predicate(get_key_/1) ->
+		(current_predicate(get_single_char/1) -> ['compat/get_key_gsc.pl']
+		; ['compat/get_key_none.pl'])
 	; true),
 	(\+ current_predicate(divmod/4) -> ['compat/divmod.pl']; true),
 	(\+ current_predicate(stack_usage/1) -> ['compat/stack_usage_none.pl']; true)
