@@ -4,6 +4,7 @@
 :- initialization((
 	(current_prolog_flag(dialect, swi) ->
 		set_prolog_flag(iso, true),
+		set_prolog_flag(encoding, utf8),
 		['compat/stack_usage_swi.pl']
 	; true),
 	(current_prolog_flag(dialect, xsb) ->
