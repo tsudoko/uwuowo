@@ -16,7 +16,7 @@ toplevel_ent(X) :-
 visible_location(Room-Ent, X-Y) :-
 	(
 		(location(_-cursor, X-Y), Ent = cursor);
-		(room(Room, RW-RH), (X = -1; Y = -1; X is RW; Y is RH), Ent = wall);
+		(room(Room, RW-RH), (X =:= -1; Y =:= -1; X =:= RW; Y =:= RH), Ent = wall);
 		(\+ is_visible(X-Y), Ent = darkness);
 		(location(Room-Ent, X-Y), toplevel_ent(Ent));
 		(location(Room-Ent, X-Y), item(Ent));
