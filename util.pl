@@ -6,6 +6,15 @@ random_int(From, To, X) :- % [From, To)
 put_codes([]).
 put_codes([X|Xs]) :- put_code(X), put_codes(Xs).
 
+:- op(10, xfx, times_do).
+times_do(N, TermList) :-
+	Goal =.. TermList,
+	times_do_(N, Goal).
+times_do_(0, _).
+times_do_(N, Goal) :-
+	NN is N-1,
+	call(Goal), times_do_(NN, Goal).
+
 pair_add(X1-Y1, X2-Y2, OX-OY) :-
 	OX is X1+X2,
 	OY is Y1+Y2.
