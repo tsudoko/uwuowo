@@ -17,8 +17,13 @@
 :- dynamic(on_get/1).
 :- multifile(on_get/1).
 
+% not strictly multifile (these aren't defined anywhere, they're always
+% asserted at runtime) but gplc generates duplicate definitions without
+% specifying multifile
 :- dynamic(status_msg/1).
+:- multifile(status_msg/1).
 :- dynamic(current_action/1).
+:- multifile(current_action/1).
 
 :- multifile(gen_room/3).
 :- multifile(put_ent/2).
