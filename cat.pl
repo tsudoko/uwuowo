@@ -1,7 +1,8 @@
 :- include('basedef.pl').
 
 on_get(_-cat) :-
-	assertz(status_msg("m-meow?")).
+	assertz(status_msg("m-meow?")),
+	fail.
 
 turn_pass(Room-cat) :- maybe,
 	location(Room-cat, _-_),
