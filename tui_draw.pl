@@ -11,7 +11,7 @@ redraw :-
 	inventory(self, Inventory),
 	write_inventory(Inventory), nl,
 	(inventory_cursor(self, Cur), tile(darkness, ET), Cur times_do [put_codes, ET], tile(cursor, T), put_codes(T), nl; nl),
-	(status_msg(Msg), put_codes(Msg), retract(status_msg(Msg)), nl; nl).
+	findall(put_codes(Msg), (status_msg(Msg), put_codes(Msg), retract(status_msg(Msg)), nl), _).
 
 write_inventory([]).
 write_inventory([I|Rest]) :-
