@@ -1,3 +1,5 @@
+:- include('ops.pl').
+
 maybe :- random_int(0, 2, X), X =:= 0.
 random_int(From, To, X) :- % [From, To)
 	random(Xf),
@@ -6,7 +8,6 @@ random_int(From, To, X) :- % [From, To)
 put_codes([]).
 put_codes([X|Xs]) :- put_code(X), put_codes(Xs).
 
-:- op(10, xfx, times_do).
 times_do(N, TermList) :-
 	Goal =.. TermList,
 	times_do_(N, Goal).

@@ -1,3 +1,5 @@
+:- include('ops.pl').
+
 redraw :-
 	put_codes("\x1b\[1J"),
 	put_codes("\x1b\[0;0f"),
