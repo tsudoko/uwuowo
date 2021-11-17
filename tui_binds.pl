@@ -30,6 +30,7 @@ keybind("G") :- toggle_action(act_get).
 keybind("D") :- toggle_inventory_cursor, toggle_action(act_drop).
 keybind(">") :- room_leave_self(down), turn_pass.
 keybind("<") :- room_leave_self(up)  , turn_pass.
+keybind("\f") :- redraw.
 
 keybind("7")       :- act_self(-1 - -1), turn_pass.
 keybind("9")       :- act_self( 1 - -1), turn_pass.
